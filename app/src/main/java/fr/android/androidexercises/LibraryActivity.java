@@ -42,6 +42,7 @@ public class LibraryActivity extends AppCompatActivity {
                 // Replace with startActivity() to start BookActivity
 //                Toast.makeText(LibraryActivity.this, R.string.toast_todo, Toast.LENGTH_SHORT).show();
                 Intent intentBookActivity = new Intent(LibraryActivity.this, BookActivity.class);
+                intentBookActivity.putExtra(BookActivity.EXTRA_BOOK_ID, 1);
                 startActivity(intentBookActivity);
             }
         });
