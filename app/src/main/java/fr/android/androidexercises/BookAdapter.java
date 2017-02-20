@@ -12,11 +12,13 @@ public class BookAdapter extends BaseAdapter {
 
     private final List<Book> books;
     private final LayoutInflater layoutInflater;
+    private final Context context;
 
     public BookAdapter(Context context, List<Book> books) {
         this.books = books;
         // LayoutInflater.from()
         this.layoutInflater = LayoutInflater.from(context);
+        this.context = context;
     }
 
     @Override
@@ -42,7 +44,7 @@ public class BookAdapter extends BaseAdapter {
         } else {
             bookItemView = (BookItemView) convertView;
         }
-        bookItemView.bindView(getItem(position));
+        bookItemView.bindView(context, getItem(position));
         return bookItemView;
     }
 
