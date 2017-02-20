@@ -14,7 +14,7 @@ public class BookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book);
         int bookId = getIntent().getIntExtra(BookActivity.EXTRA_BOOK_ID, 0);
         Toast.makeText(
-                BookActivity.this,
+                this,
                 getResources().getString(R.string.opened_book, bookId),
                 Toast.LENGTH_SHORT)
                 .show();
