@@ -9,13 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.android.gpouilloux.R;
-import fr.android.gpouilloux.activities.LibraryActivity;
 import fr.android.gpouilloux.adapters.BookRecyclerAdapter;
 import fr.android.gpouilloux.models.Book;
 import fr.android.gpouilloux.services.HenriPotierService;
@@ -51,14 +49,7 @@ public class BookListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        View.OnClickListener viewOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onBookItemClicked();
-            }
-        };
-
-        adapter = new BookRecyclerAdapter(LayoutInflater.from(getContext()), books, viewOnClickListener);
+        adapter = new BookRecyclerAdapter(LayoutInflater.from(getContext()), books, listener);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.bookRecycler);
         recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), getResources().getInteger(R.integer.nb_columns)));
@@ -93,6 +84,6 @@ public class BookListFragment extends Fragment {
     }
 
     public interface OnBookItemClickedListener {
-        void onBookItemClicked();
+        void onBookItemClicked(Book book);
     }
 }
