@@ -2,14 +2,14 @@
 <fr.android.androidexercises.BookItemView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="10dp">
 
     <TextView
         android:id="@+id/nameTextView"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         tools:text="Garry Potier Tome 1"/>
@@ -21,9 +21,4 @@
         android:layout_gravity="center"
         tools:text="15€"/>
 
-    <ImageView
-        android:id="@+id/coverImageView"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        tools:ignore="ContentDescription" />
 </fr.android.androidexercises.BookItemView>
