@@ -48,4 +48,6 @@ public class BookItemView extends LinearLayout {
                 .crossFade()
                 .into(coverImageView);
     }
+
+
 }
