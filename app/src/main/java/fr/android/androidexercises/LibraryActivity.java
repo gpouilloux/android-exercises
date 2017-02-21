@@ -10,10 +10,13 @@ public class LibraryActivity extends AppCompatActivity implements Step0Fragment.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
 
-        // replace Step0Fragment in containerFrameLayout
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.containerFrameLayout, new Step0Fragment(), Step0Fragment.class.getSimpleName())
-                .commit();
+        // avoid overwriting fragments on orientation change
+        if (savedInstanceState == null) {
+            // replace Step0Fragment in containerFrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.containerFrameLayout, new Step0Fragment(), Step0Fragment.class.getSimpleName())
+                    .commit();
+        }
     }
 
     @Override
@@ -21,7 +24,7 @@ public class LibraryActivity extends AppCompatActivity implements Step0Fragment.
         // replace Step1Fragment in containerFrameLayout
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.containerFrameLayout, new Step1Fragment(), Step1Fragment.class.getSimpleName())
-                .addToBackStack(Step1Fragment.class.getSimpleName())
+                .addToBackStack("from0To1") // adds this transaction to the back stack
                 .commit();
     }
 

@@ -53,6 +53,6 @@ public class Step0Fragment extends Fragment {
 
     public interface OnNextStep0Listener {
         // add onNext() method
-        public void onNext();
+        void onNext();
     }
 }
