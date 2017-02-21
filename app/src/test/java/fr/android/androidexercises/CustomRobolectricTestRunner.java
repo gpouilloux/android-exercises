@@ -50,7 +50,7 @@ public class CustomRobolectricTestRunner extends RobolectricTestRunner {
 
     @Override
     protected int pickSdkVersion(Config config, AndroidManifest manifest) {
-        config = overwriteConfig(config, CONFIG_SDK, String.valueOf(Build.VERSION_CODES.JELLY_BEAN));
+        config = overwriteConfig(config, CONFIG_SDK, String.valueOf(Build.VERSION_CODES.LOLLIPOP));
         return super.pickSdkVersion(config, manifest);
     }
 
