@@ -14,25 +14,7 @@ public class Book implements Parcelable {
     private String title;
     private String price;
     private String cover;
-
-    protected Book(Parcel parcel) {
-        isbn = parcel.readString();
-        title = parcel.readString();
-        price = parcel.readString();
-        cover = parcel.readString();
-    }
-
-    public static final Creator<Book> CREATOR = new Creator<Book>() {
-        @Override
-        public Book createFromParcel(Parcel parcel) {
-            return new Book(parcel);
-        }
-
-        @Override
-        public Book[] newArray(int size) {
-            return new Book[size];
-        }
-    };
+    private String[] synopsis;
 
     public String getIsbn() {
         return isbn;
@@ -66,6 +48,22 @@ public class Book implements Parcelable {
         this.cover = cover;
     }
 
+    public String[] getSynopsis() {
+        return synopsis;
+    }
+
+    public void setSynopsis(String[] synopsis) {
+        this.synopsis = synopsis;
+    }
+
+    public String getReadableSynopsis() {
+        StringBuilder builder = new StringBuilder();
+        for(String s : synopsis) {
+            builder.append(s);
+        }
+        return builder.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,6 +80,27 @@ public class Book implements Parcelable {
         return isbn.hashCode();
     }
 
+    protected Book(Parcel parcel) {
+        isbn = parcel.readString();
+        title = parcel.readString();
+        price = parcel.readString();
+        cover = parcel.readString();
+        synopsis = (String[]) parcel.readArray(String.class.getClassLoader());
+    }
+
+    public static final Creator<Book> CREATOR = new Creator<Book>() {
+        @Override
+        public Book createFromParcel(Parcel parcel) {
+            return new Book(parcel);
+        }
+
+        @Override
+        public Book[] newArray(int size) {
+            return new Book[size];
+        }
+    };
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -93,5 +112,7 @@ public class Book implements Parcelable {
         dest.writeString(title);
         dest.writeString(price);
         dest.writeString(cover);
+        dest.writeArray(synopsis);
     }
+
 }

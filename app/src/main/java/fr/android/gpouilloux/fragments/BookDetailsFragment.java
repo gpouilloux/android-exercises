@@ -40,7 +40,7 @@ public class BookDetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         titleTextView.setText(book.getTitle());
-        synopsisTextView.setText("TODO");
+        synopsisTextView.setText(book.getReadableSynopsis());
         Glide.with(this.getContext())
                 .load(book.getCover())
                 .centerCrop()
