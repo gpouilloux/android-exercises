@@ -39,13 +39,15 @@ public class BookDetailsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        titleTextView.setText(book.getTitle());
-        synopsisTextView.setText(book.getReadableSynopsis());
-        Glide.with(this.getContext())
-                .load(book.getCover())
-                .centerCrop()
-                .crossFade()
-                .into(coverImageView);
+        if (book != null) {
+            titleTextView.setText(book.getTitle());
+            synopsisTextView.setText(book.getReadableSynopsis());
+            Glide.with(this.getContext())
+                    .load(book.getCover())
+                    .centerCrop()
+                    .crossFade()
+                    .into(coverImageView);
+        }
 
     }
 }

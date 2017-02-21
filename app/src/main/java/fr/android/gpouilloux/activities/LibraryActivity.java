@@ -1,5 +1,6 @@
 package fr.android.gpouilloux.activities;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -15,6 +16,7 @@ import fr.android.gpouilloux.models.Book;
  */
 public class LibraryActivity extends AppCompatActivity implements BookListFragment.OnBookItemClickedListener {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +29,27 @@ public class LibraryActivity extends AppCompatActivity implements BookListFragme
 
     @Override
     public void onBookItemClicked(Book book) {
-        BookDetailsFragment bookDetailsFragment = new BookDetailsFragment();
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("book", book);
-        bookDetailsFragment.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.containerFrameLayout, bookDetailsFragment, BookDetailsFragment.class.getSimpleName())
-                .addToBackStack("fromBookListToBookDetails")
-                .commit();
+        displayBookDetailsWithOrientation(book);
+    }
+
+    private void displayBookDetailsWithOrientation(Book book) {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            BookDetailsFragment bookDetailsFragment = new BookDetailsFragment();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("book", book);
+            bookDetailsFragment.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.containerFrameLayout, bookDetailsFragment, BookDetailsFragment.class.getSimpleName())
+                    .addToBackStack("fromBookListToBookDetails")
+                    .commit();
+        } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            BookDetailsFragment bookDetailsFragment = new BookDetailsFragment();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("book", book);
+            bookDetailsFragment.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.bookDetails, bookDetailsFragment, BookDetailsFragment.class.getSimpleName())
+                    .commit();
+        }
     }
 }
