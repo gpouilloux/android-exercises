@@ -1,5 +1,6 @@
 package fr.android.androidexercises;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -44,6 +45,10 @@ public class LibraryActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     final JSONObject user = new JSONObject(response.body().string());
+
+                    Intent intent = new Intent(LibraryActivity.this, BigJobService.class);
+                    startService(intent);
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
