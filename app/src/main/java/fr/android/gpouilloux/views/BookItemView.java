@@ -1,4 +1,4 @@
-package fr.android.androidexercises;
+package fr.android.gpouilloux.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,6 +8,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import fr.android.gpouilloux.R;
+import fr.android.gpouilloux.models.Book;
+
+/**
+ * Custom view displaying a book with a linear layout
+ *
+ * @author Guillaume Pouilloux <gui.pouilloux@gmail.com>
+ */
 public class BookItemView extends LinearLayout {
 
     private TextView titleTextView;

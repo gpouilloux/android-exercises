@@ -1,5 +1,10 @@
-package fr.android.androidexercises;
+package fr.android.gpouilloux.models;
 
+/**
+ * POJO describing the Book model
+ *
+ * @author Guillaume Pouilloux <gui.pouilloux@gmail.com>
+ */
 public class Book {
 
     private String isbn;

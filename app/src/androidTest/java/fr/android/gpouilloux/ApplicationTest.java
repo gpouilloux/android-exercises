@@ -1,4 +1,4 @@
-package fr.android.androidexercises;
+package fr.android.gpouilloux;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

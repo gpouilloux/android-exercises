@@ -1,4 +1,4 @@
-package fr.android.androidexercises;
+package fr.android.gpouilloux.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,10 @@ import android.view.LayoutInflater;
 
 import java.util.List;
 
+import fr.android.gpouilloux.R;
+import fr.android.gpouilloux.adapters.BookRecyclerAdapter;
+import fr.android.gpouilloux.models.Book;
+import fr.android.gpouilloux.services.HenriPotierService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -15,6 +19,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
+/**
+ * Main activity displaying a list of books
+ *
+ * @author Guillaume Pouilloux <gui.pouilloux@gmail.com>
+ */
 public class LibraryActivity extends AppCompatActivity {
 
     @Override
@@ -33,8 +42,6 @@ public class LibraryActivity extends AppCompatActivity {
 
         // create a service
         HenriPotierService service = retrofit.create(HenriPotierService.class);
-
-        // listBooks()
         Call<List<Book>> call = service.listBooks();
 
         // enqueue call and display book title
