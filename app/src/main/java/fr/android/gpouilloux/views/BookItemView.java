@@ -19,6 +19,7 @@ import fr.android.gpouilloux.models.Book;
 public class BookItemView extends LinearLayout {
 
     private TextView titleTextView;
+    private TextView priceTextView;
     private ImageView coverImageView;
 
     public BookItemView(Context context) {
@@ -37,14 +38,16 @@ public class BookItemView extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         titleTextView = (TextView) findViewById(R.id.titleTextView);
+        priceTextView = (TextView) findViewById(R.id.priceTextView);
         coverImageView = (ImageView) findViewById(R.id.coverImageView);
     }
 
     public void bindView(Book book) {
         titleTextView.setText(book.getTitle());
+        priceTextView.setText(book.getPrice() + " " + getResources().getString(R.string.currency));
         Glide.with(this.getContext())
                 .load(book.getCover())
-                .centerCrop()
+                .fitCenter()
                 .crossFade()
                 .into(coverImageView);
     }

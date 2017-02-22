@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="100dp"
+    android:layout_height="200dp"
     android:orientation="horizontal"
     android:padding="10dp"
     android:focusable="true"
@@ -12,16 +12,34 @@
 
     <ImageView
         android:id="@+id/coverImageView"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:src="@drawable/ic_launcher"
         tools:ignore="ContentDescription"/>
 
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        tools:text="Henri Potier à l'école des sorciers"/>
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textStyle="bold"
+            tools:text="Henri Potier à l'école des sorciers"/>
+
+        <TextView
+            android:id="@+id/priceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/titleTextView"
+            tools:text="15 €"/>
+
+    </RelativeLayout>
+
 
 </fr.android.gpouilloux.views.BookItemView>
