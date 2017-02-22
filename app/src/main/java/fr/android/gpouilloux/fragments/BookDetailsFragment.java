@@ -20,6 +20,8 @@ public class BookDetailsFragment extends Fragment {
     private Book book;
     private ImageView coverImageView;
     private TextView titleTextView;
+    private TextView isbnTextView;
+    private TextView priceTextView;
     private TextView synopsisTextView;
 
     @Nullable
@@ -30,6 +32,8 @@ public class BookDetailsFragment extends Fragment {
         book = this.getArguments().getParcelable("book");
         coverImageView = (ImageView) view.findViewById(R.id.coverImageView);
         titleTextView = (TextView) view.findViewById(R.id.titleTextView);
+        isbnTextView = (TextView) view.findViewById(R.id.isbnTextView);
+        priceTextView = (TextView) view.findViewById(R.id.priceTextView);
         synopsisTextView = (TextView) view.findViewById(R.id.synopsisTextView);
 
         return view;
@@ -42,9 +46,11 @@ public class BookDetailsFragment extends Fragment {
         if (book != null) {
             titleTextView.setText(book.getTitle());
             synopsisTextView.setText(book.getReadableSynopsis());
+            isbnTextView.setText(book.getIsbn());
+            priceTextView.setText(book.getPrice() + " " + getResources().getString(R.string.currency));
             Glide.with(this.getContext())
                     .load(book.getCover())
-                    .centerCrop()
+                    .fitCenter()
                     .crossFade()
                     .into(coverImageView);
         }

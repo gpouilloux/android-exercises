@@ -59,7 +59,7 @@ public class Book implements Parcelable {
     public String getReadableSynopsis() {
         StringBuilder builder = new StringBuilder();
         for(String s : synopsis) {
-            builder.append(s);
+            builder.append(s).append("\n");
         }
         return builder.toString();
     }
