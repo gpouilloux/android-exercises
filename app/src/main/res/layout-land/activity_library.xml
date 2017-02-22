@@ -11,6 +11,11 @@
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
+    <View
+        android:layout_height="match_parent"
+        android:layout_width="1dp"
+        android:background="@android:color/darker_gray"/>
+
     <FrameLayout
         android:id="@+id/bookDetails"
         android:layout_width="0dp"
