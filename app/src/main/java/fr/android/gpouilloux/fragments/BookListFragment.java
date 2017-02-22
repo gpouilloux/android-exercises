@@ -27,7 +27,7 @@ import timber.log.Timber;
 
 public class BookListFragment extends Fragment {
 
-    private List<Book> books = new ArrayList<>();
+    private ArrayList<Book> books = new ArrayList<>();
     BookRecyclerAdapter adapter;
     private OnBookItemClickedListener listener;
 
@@ -57,32 +57,46 @@ public class BookListFragment extends Fragment {
         recyclerView.addItemDecoration(new BasicDividerItemDecoration(view.getContext()));
         recyclerView.setAdapter(adapter);
 
-        // build Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://henri-potier.xebia.fr")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        if (savedInstanceState != null) {
+            books.clear();
+            books.addAll(savedInstanceState.<Book>getParcelableArrayList("books"));
+            adapter.notifyDataSetChanged();
+        }
+        else if (books.isEmpty()) {
+            // build Retrofit
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://henri-potier.xebia.fr")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
 
-        // create a service
-        HenriPotierService service = retrofit.create(HenriPotierService.class);
-        Call<List<Book>> call = service.listBooks();
+            // create a service
+            HenriPotierService service = retrofit.create(HenriPotierService.class);
+            Call<List<Book>> call = service.listBooks();
 
-        // enqueue call and display book title
-        call.enqueue(new Callback<List<Book>>() {
+            // enqueue call and display book title
+            call.enqueue(new Callback<List<Book>>() {
 
-            @Override
-            public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
-                // display book as a list
-                books.clear();
-                books.addAll(response.body());
-                adapter.notifyDataSetChanged();
-            }
+                @Override
+                public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
+                    // display book as a list
+                    Timber.d("Received books from Xebia WS");
+                    books.clear();
+                    books.addAll(response.body());
+                    adapter.notifyDataSetChanged();
+                }
 
-            @Override
-            public void onFailure(Call<List<Book>> call, Throwable t) {
-                Timber.e(t);
-            }
-        });
+                @Override
+                public void onFailure(Call<List<Book>> call, Throwable t) {
+                    Timber.e(t);
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList("books", books);
     }
 
     public interface OnBookItemClickedListener {

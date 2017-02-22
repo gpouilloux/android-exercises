@@ -8,6 +8,7 @@ import fr.android.gpouilloux.R;
 import fr.android.gpouilloux.fragments.BookDetailsFragment;
 import fr.android.gpouilloux.fragments.BookListFragment;
 import fr.android.gpouilloux.models.Book;
+import timber.log.Timber;
 
 /**
  * Main activity displaying a list of books
@@ -23,13 +24,19 @@ public class LibraryActivity extends AppCompatActivity implements BookListFragme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
 
+        BookListFragment bookListFragment;
+
         if (savedInstanceState != null) {
             selectedBook = savedInstanceState.getParcelable("book");
             displayBookDetailsWithOrientation();
+            bookListFragment = (BookListFragment) getSupportFragmentManager().findFragmentByTag(BookListFragment.class.getSimpleName());
+        } else {
+            Timber.plant(new Timber.DebugTree());
+            bookListFragment = new BookListFragment();
         }
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.containerFrameLayout, new BookListFragment(), BookListFragment.class.getSimpleName())
+                .replace(R.id.containerFrameLayout, bookListFragment, BookListFragment.class.getSimpleName())
                 .commit();
     }
 
