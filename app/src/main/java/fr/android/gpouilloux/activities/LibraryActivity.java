@@ -2,7 +2,9 @@ package fr.android.gpouilloux.activities;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import fr.android.gpouilloux.R;
 import fr.android.gpouilloux.fragments.BookDetailsFragment;
@@ -33,6 +35,13 @@ public class LibraryActivity extends AppCompatActivity implements BookListFragme
         } else {
             Timber.plant(new Timber.DebugTree());
             bookListFragment = new BookListFragment();
+
+        }
+
+        Toolbar appToolbar = (Toolbar) findViewById(R.id.appToolbar);
+        if (appToolbar != null) {
+            appToolbar.setTitleTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAppBarTitle));
+            setSupportActionBar(appToolbar);
         }
 
         getSupportFragmentManager().beginTransaction()
