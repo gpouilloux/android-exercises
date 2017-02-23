@@ -25,6 +25,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
+
+/**
+ * Fragment displaying a list of books
+ *
+ * @author Guillaume Pouilloux <gui.pouilloux@gmail.com>
+ */
 public class BookListFragment extends Fragment {
 
     private ArrayList<Book> books = new ArrayList<>();

@@ -15,6 +15,11 @@ import fr.android.gpouilloux.R;
 import fr.android.gpouilloux.models.Book;
 
 
+/**
+ * Fragment displaying the details of a book
+ *
+ * @author Guillaume Pouilloux <gui.pouilloux@gmail.com>
+ */
 public class BookDetailsFragment extends Fragment {
 
     private Book book;

@@ -9,6 +9,11 @@ import android.view.View;
 
 import fr.android.gpouilloux.R;
 
+/**
+ * Decoration to append a divider between each item in a list
+ *
+ * @author Guillaume Pouilloux <gui.pouilloux@gmail.com>
+ */
 public class BasicDividerItemDecoration extends RecyclerView.ItemDecoration {
 
     private Drawable divider;
